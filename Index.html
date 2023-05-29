@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Color Transition Through Color Wheel</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    .color-transition {
+      font-size: 36px;
+      transition: color 0.5s ease-in-out;
+    } 
+    h1{
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="color-text" class="color-transition">Basically!</h1>
+
+  <script>
+    function getRandomColor() {
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    function transitionTextColors() {
+      const colorText = document.getElementById('color-text');
+      const currentColor = window.getComputedStyle(colorText).color;
+      const randomColor = getRandomColor();
+
+      colorText.style.color = randomColor;
+
+      if (currentColor !== randomColor) {
+        setTimeout(transitionTextColors, 500);
+      }
+    }
+
+    transitionTextColors();
+  </script>
+</body>
+
+</html>
